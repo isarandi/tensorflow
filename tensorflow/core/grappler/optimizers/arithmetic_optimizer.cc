@@ -3249,7 +3249,7 @@ class RemoveStackStridedSliceSameAxis : public ArithmeticOptimizerStage {
       return Status::OK();
     }
 
-    if (*slice_start_value < 0 || *slice_start_value >= pack->input_size()) {
+    if (*slice_start_value < 0 || *slice_start_value >= pack_output_shape.dim_size(slice_axis)) {
       return errors::InvalidArgument(
           "Node ", node->name(), " requested invalid slice index ",
           *slice_start_value, " on axis ", slice_axis,
